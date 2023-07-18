@@ -1,10 +1,11 @@
-package com.vaibhav.banksystem.dto.transaction;
+package com.vaibhav.banksystem.dto;
 
 import com.vaibhav.banksystem.entity.TransactionType;
 import lombok.Data;
 import lombok.Value;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -13,7 +14,8 @@ import java.time.LocalDateTime;
  */
 @Data
 public class TransactionDto {
-  LocalDate transactionDate;
+
+  private Instant transactionDate = Instant.now();
   Double amount;
   TransactionType type;
 }

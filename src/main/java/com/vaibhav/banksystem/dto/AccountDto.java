@@ -1,4 +1,4 @@
-package com.vaibhav.banksystem.dto.account;
+package com.vaibhav.banksystem.dto;
 
 import com.vaibhav.banksystem.entity.Account;
 import com.vaibhav.banksystem.entity.AccountType;
@@ -13,7 +13,8 @@ import java.util.UUID;
  */
 @Data
 public class AccountDto {
-  UUID accountNumber;
+  Long id;
+  String accountNumber;
   double currentBalance;
   AccountType type;
 }

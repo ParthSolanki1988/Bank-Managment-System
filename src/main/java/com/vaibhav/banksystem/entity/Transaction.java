@@ -3,6 +3,7 @@ package com.vaibhav.banksystem.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -17,7 +18,7 @@ public class Transaction {
   private Long id;
 
   @Column(name = "date")
-  private LocalDate transactionDate;
+  private Instant transactionDate;
 
   @Column(name = "amount")
   private Double amount;
@@ -27,6 +28,8 @@ public class Transaction {
   private TransactionType type;
 
   @ManyToOne
-  @JoinColumn(name = "account_accountNumber")
+  @JoinColumn(name = "account_id")
   private Account account;
+
+
 }

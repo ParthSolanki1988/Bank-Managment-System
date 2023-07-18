@@ -1,6 +1,6 @@
-package com.vaibhav.banksystem.mapper.usermapper;
+package com.vaibhav.banksystem.mapper;
 
-import com.vaibhav.banksystem.dto.user.UserDto;
+import com.vaibhav.banksystem.dto.UserDto;
 import com.vaibhav.banksystem.entity.User;
 import org.mapstruct.Mapper;
 

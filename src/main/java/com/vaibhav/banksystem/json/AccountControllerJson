@@ -1,0 +1,27 @@
+
+POST : localhost:8080/api/v1/accounts
+
+Request:
+{
+  "currentBalance": 9876576.00,
+  "type": "CURRENT",
+  "user": {
+    "firstName": "Vaibhav",
+    "lastName": "Gohil",
+    "birthDate": "1997-09-22",
+    "panCardNumber": "DFGHJ45678TY"
+  }
+}
+
+Response:
+{
+    "id": 2,
+    "accountNumber": "4e2966c1-17d9-4ffa-9ef9-4ec88fac10cc",
+    "currentBalance": 9876576.0,
+    "user": {
+        "firstName": "Vaibhav",
+        "lastName": "Gohil",
+        "birthDate": "1997-09-22",
+        "panCardNumber": "DFGHJ45678TY"
+    }
+}

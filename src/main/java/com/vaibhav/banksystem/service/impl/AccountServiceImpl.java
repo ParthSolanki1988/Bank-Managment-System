@@ -1,18 +1,17 @@
 package com.vaibhav.banksystem.service.impl;
 
-import com.vaibhav.banksystem.dto.account.AccountRequestDto;
-import com.vaibhav.banksystem.dto.account.AccountResponseDto;
+import com.vaibhav.banksystem.dto.AccountRequestDto;
+import com.vaibhav.banksystem.dto.AccountResponseDto;
 import com.vaibhav.banksystem.entity.Account;
-import com.vaibhav.banksystem.dto.account.AccountDto;
-import com.vaibhav.banksystem.exception.AccountNotFound;
-import com.vaibhav.banksystem.mapper.accountmapper.AccountMapper;
+import com.vaibhav.banksystem.dto.AccountDto;
+import com.vaibhav.banksystem.mapper.AccountMapper;
 import com.vaibhav.banksystem.repository.AccountRepository;
 import com.vaibhav.banksystem.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class AccountServiceImpl implements AccountService {
@@ -24,6 +23,11 @@ public class AccountServiceImpl implements AccountService {
   @Override
   public AccountResponseDto createAccount(AccountRequestDto accountRequestDto) {
       Account account = accountMapper.accountReqestDtoToAccount(accountRequestDto);
+
+      //set account UUID number
+      String accountNumber = UUID.randomUUID().toString();
+      account.setAccountNumber(accountNumber);
+
       accountRepository.save(account);
       return accountMapper.accountToAccountResponseDto(account);
   }
@@ -35,5 +39,12 @@ public class AccountServiceImpl implements AccountService {
     List<AccountDto> accountDtos = accountMapper.listOfAccountToListOfAccountDto(accountList);
 
     return accountDtos;
+  }
+
+  @Override
+  public AccountDto getAccountByUserId(Long id) {
+    Account accountByUserId = accountRepository.findByUserId(id);
+    AccountDto accountDto = accountMapper.accountToAccountDto(accountByUserId);
+    return accountDto;
   }
 }

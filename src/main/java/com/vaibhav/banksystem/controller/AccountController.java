@@ -1,8 +1,9 @@
 package com.vaibhav.banksystem.controller;
 
-import com.vaibhav.banksystem.dto.account.AccountRequestDto;
-import com.vaibhav.banksystem.dto.account.AccountResponseDto;
-import com.vaibhav.banksystem.dto.account.AccountDto;
+import com.vaibhav.banksystem.dto.AccountRequestDto;
+import com.vaibhav.banksystem.dto.AccountResponseDto;
+import com.vaibhav.banksystem.dto.AccountDto;
+import com.vaibhav.banksystem.dto.UserDto;
 import com.vaibhav.banksystem.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,4 +30,11 @@ public class AccountController {
     List<AccountDto> allAccount = accountService.getAllAccount();
     return new ResponseEntity<>(allAccount , HttpStatus.FOUND);
   }
+
+  @GetMapping("{id}")
+  public ResponseEntity<AccountDto> getAccountByUserId(@PathVariable("id") Long id){
+    AccountDto accountByUserId = accountService.getAccountByUserId(id);
+    return new ResponseEntity<>(accountByUserId , HttpStatus.FOUND);
+  }
+
 }

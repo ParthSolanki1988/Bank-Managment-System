@@ -1,4 +1,4 @@
-package com.vaibhav.banksystem.dto.user;
+package com.vaibhav.banksystem.dto;
 
 import com.vaibhav.banksystem.entity.Account;
 import lombok.Data;

@@ -2,21 +2,21 @@ package com.vaibhav.banksystem.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @Entity
 @Table(name = "account")
 public class Account {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id")
-  private Long id;
 
+  @Id
   @Column(name = "account_number")
-  private Long accountNumber;
+  @GeneratedValue(strategy = GenerationType.UUID)
+  private UUID accountNumber;
 
   @Column(name = "current_balance")
   private double currentBalance;
@@ -25,7 +25,11 @@ public class Account {
   @Enumerated(EnumType.STRING)
   private AccountType type;
 
-  @ManyToOne(cascade = CascadeType.PERSIST)
+  /**
+   * when we get List of Account , it's also give list of user
+   * thats why add lazy
+   */
+  @ManyToOne(cascade = CascadeType.PERSIST , fetch = FetchType.LAZY)
   @JoinColumn(name = "user_id")
   private User user;
 

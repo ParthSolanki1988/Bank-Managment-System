@@ -1,11 +1,11 @@
 package com.vaibhav.banksystem.service.impl;
 
-import com.vaibhav.banksystem.dto.AccountRequestDto;
-import com.vaibhav.banksystem.dto.AccountResponseDto;
+import com.vaibhav.banksystem.dto.account.AccountRequestDto;
+import com.vaibhav.banksystem.dto.account.AccountResponseDto;
 import com.vaibhav.banksystem.entity.Account;
-import com.vaibhav.banksystem.entity.AccountDto;
+import com.vaibhav.banksystem.dto.account.AccountDto;
 import com.vaibhav.banksystem.exception.AccountNotFound;
-import com.vaibhav.banksystem.mapstruct.MapStructMapping;
+import com.vaibhav.banksystem.mapper.accountmapper.AccountMapper;
 import com.vaibhav.banksystem.repository.AccountRepository;
 import com.vaibhav.banksystem.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,38 +20,20 @@ public class AccountServiceImpl implements AccountService {
   AccountRepository accountRepository;
 
   @Autowired
-  MapStructMapping mapStructMapping;
+  AccountMapper accountMapper;
   @Override
   public AccountResponseDto createAccount(AccountRequestDto accountRequestDto) {
-    if (accountRequestDto != null){
-      Account account = mapStructMapping.accountReqestDtoToAccount(accountRequestDto);
+      Account account = accountMapper.accountReqestDtoToAccount(accountRequestDto);
       accountRepository.save(account);
-      return mapStructMapping.accountToAccountResponseDto(account);
-    }else {
-      throw new AccountNotFound("Account Not Found");
-    }
+      return accountMapper.accountToAccountResponseDto(account);
   }
 
   @Override
-  public List<Account> getAllAccount() {
-    return null;
-  }
+  public List<AccountDto> getAllAccount() {
+    List<Account> accountList = accountRepository.findAll();
 
-  @Override
-  public Account getById(int id) {
-    return null;
-  }
+    List<AccountDto> accountDtos = accountMapper.listOfAccountToListOfAccountDto(accountList);
 
-  @Override
-  public AccountDto deleteAccountById(Long id , Account account) {
-    Optional<Account> optionalAccount = accountRepository.findById(id);
-    account = optionalAccount.get();
-
-    if (optionalAccount.isPresent()){
-      accountRepository.deleteById(id);
-      return mapStructMapping.accountToAccountDto(account);
-    }else {
-      throw new AccountNotFound("Account Not Found");
-    }
+    return accountDtos;
   }
 }

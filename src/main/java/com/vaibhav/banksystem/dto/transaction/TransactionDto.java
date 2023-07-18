@@ -1,4 +1,4 @@
-package com.vaibhav.banksystem.dto;
+package com.vaibhav.banksystem.dto.transaction;
 
 import com.vaibhav.banksystem.entity.TransactionType;
 import lombok.Data;

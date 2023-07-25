@@ -1,11 +1,12 @@
 package com.vaibhav.banksystem.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 
 @Data

@@ -2,11 +2,9 @@ package com.vaibhav.banksystem.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.hibernate.annotations.GenericGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Data
 @Entity
@@ -37,7 +35,7 @@ public class Account {
   @JoinColumn(name = "user_id")
   private User user;
 
-  @OneToMany(cascade = {CascadeType.PERSIST , CascadeType.MERGE , CascadeType.REMOVE}, mappedBy = "account")
+  @OneToMany(mappedBy = "account")
   private List<Transaction> transactions = new ArrayList<>();
 
 

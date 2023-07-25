@@ -1,9 +1,9 @@
 package com.vaibhav.banksystem.mapper;
 
+import com.vaibhav.banksystem.dto.AccountDto;
 import com.vaibhav.banksystem.dto.AccountRequestDto;
 import com.vaibhav.banksystem.dto.AccountResponseDto;
 import com.vaibhav.banksystem.entity.Account;
-import com.vaibhav.banksystem.dto.AccountDto;
 import org.mapstruct.Mapper;
 
 import java.util.List;

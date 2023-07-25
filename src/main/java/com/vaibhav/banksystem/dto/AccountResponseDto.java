@@ -2,8 +2,6 @@ package com.vaibhav.banksystem.dto;
 
 import lombok.Data;
 
-import java.util.UUID;
-
 @Data
 public class AccountResponseDto {
   private Long id;
